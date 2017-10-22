@@ -1,1 +1,1 @@
-web: chatbot
+web: chatbot-sample
