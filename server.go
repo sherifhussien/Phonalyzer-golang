@@ -102,7 +102,7 @@ func chatbotProcess(session Session, message string) (string, error) {
 	if info1.Valid {
 		return fmt.Sprintf("%s is a valid number, the carrier is %s located at %s.", message,info1.Carrier,info1.CountryName),nil
 	}else {
-		return "", fmt.Errorf("%s is not a number!\nPlease enter a number to validate.", message)
+		return "", fmt.Errorf("%s is not a valid number!make sure to add the country code", message)
 	}
 }
 
