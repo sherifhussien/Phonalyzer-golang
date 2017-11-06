@@ -41,6 +41,7 @@ var (
 
 type (
 	// Session Holds info about a session
+	//Empty interfaces are used by code that handles values of unknown type,An empty interface may hold values of any type
 	Session map[string]interface{}
 
 	// JSON Holds a JSON object
@@ -52,15 +53,14 @@ type (
 
 func chatbotProcess(session Session, message string) (string, error) {
 
+	message = strings.TrimSpace(message)
 	if _, err := strconv.Atoi(message); err != nil {
 		return "", fmt.Errorf("%s is not a number!\nPlease enter a number to validate", message)
 	}
 
 	url := fmt.Sprintf("http://apilayer.net/api/validate?access_key=506fc53fdab5d78d6e2ee8d52a27d984&number=%s&format=1",message)
 	
-	numClient := http.Client{
-		Timeout: time.Second * 2, // Maximum of 2 secs
-	}
+	numClient := http.Client{}
 
 	req, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
@@ -71,8 +71,6 @@ func chatbotProcess(session Session, message string) (string, error) {
 	if getErr != nil {
 		log.Fatal(getErr)
 	}
-
-	fmt.Printf("HTTP: %s\n", res.Status)		
 
 	body, readErr := ioutil.ReadAll(res.Body)
 	if readErr != nil {
