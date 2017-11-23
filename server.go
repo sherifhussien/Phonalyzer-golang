@@ -55,7 +55,7 @@ func chatbotProcess(session Session, message string) (string, error) {
 
 	message = strings.TrimSpace(message)
 	if _, err := strconv.Atoi(message); err != nil {
-		return "", fmt.Errorf("%s is not a number!\nPlease enter a number to validate", message)
+		return fmt.Sprintf("%s is not a number!\nPlease enter a number to validate", message),nil
 	}
 
 	url := fmt.Sprintf("http://apilayer.net/api/validate?access_key=506fc53fdab5d78d6e2ee8d52a27d984&number=%s&format=1",message)
@@ -100,7 +100,7 @@ func chatbotProcess(session Session, message string) (string, error) {
 	if info1.Valid {
 		return fmt.Sprintf("%s is a valid number, the carrier is %s located at %s.", message,info1.Carrier,info1.CountryName),nil
 	}else {
-		return "", fmt.Errorf("%s is not a valid number!make sure to add the country code", message)
+		return fmt.Sprintf("%s is not a valid number!make sure to add the country code", message),nil
 	}
 }
 
