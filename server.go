@@ -99,7 +99,7 @@ func chatbotProcess(session Session, message string) (string, error) {
 
 	
 	if info1.Valid {
-		return fmt.Sprintf("%s is a valid number, the carrier is %s. Its location is %s.", message,info1.Carrier,info1.CountryName),nil
+		return fmt.Sprintf("%s is a valid number.\nThe carrier is %s.\nIts location is %s.", message,info1.Carrier,info1.CountryName),nil
 	}else {
 		return fmt.Sprintf("%s is not a valid number!\n Please make sure to add the country code.", message),nil
 	}
