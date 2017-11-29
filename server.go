@@ -59,7 +59,7 @@ func chatbotProcess(session Session, message string) (string, error) {
 
 	}
 
-	url := fmt.Sprintf("http://apilayer.net/api/validate?access_key=506fc53fdab5d78d6e2ee8d52a27d984&number=%s&format=1",message)
+	url := fmt.Sprintf("http://apilayer.net/api/validate?access_key=5764aac672cad37aa7659316901be951&number=%s&format=1",message)
 	
 	numClient := http.Client{}
 
